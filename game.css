@@ -30,6 +30,7 @@
     border: 5px solid black;
     margin: 0 auto;
     margin-top: 10px;
+    
 }
 
 .currentColor{
@@ -74,5 +75,5 @@
 }
 
 .other{
-    margin-left: 200px;
+    margin-left: 400px;
 }
