@@ -7,18 +7,12 @@
 </head>
 
 <body>
-    <div class="content">
+    <div class="content" id="content">
         <div class="fullBoard">
             <div class="board"></div>
             <div class="pegs"></div>
         </div>
         <div class="other">
-            <div class="code">
-                <div class="secretColor" id="secretColor1"></div>
-                <div class="secretColor" id="secretColor2"></div>
-                <div class="secretColor" id="secretColor3"></div>
-                <div class="secretColor" id="secretColor4"></div>
-            </div>
             <div class="colorBoard">
                 <div class="color" id="blue"></div>
                 <div class="color" id="green"></div>
@@ -30,6 +24,17 @@
             <div class="currentColor"></div> 
             <div class="submit">Submit</div>
         </div>
-        
+    </div>
+    <div class="code" id="code" style="display:none">
+        <div class="secretColor" id="secretColor1"></div>
+        <div class="secretColor" id="secretColor2"></div>
+        <div class="secretColor" id="secretColor3"></div>
+        <div class="secretColor" id="secretColor4"></div>
+    </div>
+    <br>
+    <div class="gameOver" id="gameOver" style="display:none">
+        <h1><div id="text"></div></h1>
+        <br>
+        <h2><a href="index.html">Go to start game</a></h2>
     </div>
 </body>

@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    var currentColor="white";
-    var currentBoardCells=["board40", "board41", "board42", "board43"];
-    var currentPegCells=["peg40", "peg41", "peg42", "peg43"];
-    var currentRow=11;
+    var currentColor = "white";
+    var currentBoardCells = ["board40", "board41", "board42", "board43"];
+    var currentPegCells = ["peg40", "peg41", "peg42", "peg43"]
+    var currentRow = 11;
     var possibleColors = ["blue", "green", "red", "yellow", "orange", "pink"];
     var hasWon = false;
 
@@ -23,46 +23,44 @@ $(document).ready(function(){
         possibleColors[Math.floor(Math.random()*6)],
         possibleColors[Math.floor(Math.random()*6)]
     ];
-
+    
+    console.log(code);
     for(let i = 0; i < 44; i++){
         let cell = "<div class=\"boardCell\" id=board"+i+"></div>"
         $(".board").append(cell);
     }
-
     for(let i = 0; i < 44; i++){
         let cell = "<div class=\"pegCell\" id=peg"+i+"></div>"
         $(".pegs").append(cell);
     }
-
     $(".board").css("grid-template-rows", "repeat(11,73.18px)");
     $(".board").css("grid-template-columns", "repeat(4,73.18px)");
-    $(".boardCell").css("border", "1px solid black");
+    $(".boardCell").css("border", "1px solid rgba(5, 15, 102, 0.993)");
     $(".boardCell").css("border-radius", "50%");
     $(".boardCell").css("background-color", "white");
 
     $(".pegs").css("grid-template-rows", "repeat(22,36.59px)");
     $(".pegs").css("grid-template-columns", "repeat(2,36.59px");
     $(".pegCell").css("border", "1px solid black");
-    $(".pegCell").css("border-radius", "50%");
-    $(".pegCell").css("background-color", "gray");
+    $(".pegCell").css("border-radius", "50%")
+    $(".pegCell").css("background-color", "gray")
 
     $(".color").each(function(){
         let color = $(this).attr("id");
         $(this).css("background-color", color);
     });
-
     $(".color").click(function(){
         let color = $(this).attr("id");
         currentColor = color;
         $(".currentColor").css("background-color", color);
-    })
-
+    });
     $(".boardCell").click(function(){
-        let id = $(this).attr("id");
+        var id = $(this).attr("id");
+
         if(isValid(id)){
             $(this).css("background-color", currentColor);
         }
-    })
+    });
     $(".submit").click(function(){
         updatePegs();
         checkWin();
@@ -82,15 +80,42 @@ $(document).ready(function(){
             "peg" + (currentRow*mult-3), 
             "peg" + (currentRow*mult-2), 
             "peg" + (currentRow*mult-1)];
+            if(currentRow==0){
+                $("#secretColor1").css("background-color", code[0]);
+                $("#secretColor2").css("background-color", code[1]);
+                $("#secretColor3").css("background-color", code[2]);
+                $("#secretColor4").css("background-color", code[3]);
+                gameOver(false);
+            }
     }
-
     function isValid(id){
         if(currentBoardCells.includes(id) && hasWon === false){
             return true;
         }
         return false;
     }
-
+    function gameOver(win){
+        if(win ==true){
+        let content = document.getElementById("content");
+        let code=document.getElementById("code");
+        let gameOver = document.getElementById("gameOver");
+        content.style.display="none";
+        code.style.display="grid";
+        code.style.margin="auto";
+        gameOver.style.display="block";
+        document.getElementById("text").innerHTML="Congratulations!<br> You've broke the code";
+        }
+        else{
+            let content = document.getElementById("content");
+            let code=document.getElementById("code");
+            let gameOver = document.getElementById("gameOver");
+            content.style.display="none";
+            code.style.display="grid";
+            code.style.margin="auto";
+            gameOver.style.display="block";
+            document.getElementById("text").innerHTML="Game Over!<br> GG";
+        }
+    }
     function checkWin(){
         if(code[0] === cell1Color &&
             code[1] === cell2Color &&
@@ -101,6 +126,7 @@ $(document).ready(function(){
             $("#secretColor2").css("background-color", code[1]);
             $("#secretColor3").css("background-color", code[2]);
             $("#secretColor4").css("background-color", code[3]);
+            gameOver(true);
         }
 
         return hasWon; 
@@ -122,7 +148,6 @@ $(document).ready(function(){
         let peg4 = $("#"+currentPegCells[3]);
 
         let pegs = [peg1, peg2, peg3, peg4];
-
         let filledPegs = [];
         let chosenCells = [];
         let codeCopy = [...code];

@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
-    <link rel="stylesheet" href="main.css" type="text/css">
-    <title>Mastermind</title>
-  </head>
-  <body>
-    <ul>
-      <li><a href="game.html">Start</a></li>
-      <li>O grze</li>
-      <li>Wyjdź</li>
-    </ul>
-  </body>
+<html lang="en">
+    <head>
+        <title>Mastermind</title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <link rel="stylesheet" type="text/css" href="main.css"/>
+        <script type="text/javascript">
+            function exit(){
+                window.close();
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Witaj w Mastermind kliknij start by rozpocząć</h1>
+        <div id="start">
+            <a href="game.html" >Start</a>
+        </div>
+        <div id="start" onclick="exit();">
+            <a>Wyjdź</a>
+        </div>
+    </body>
 </html>
