@@ -23,8 +23,7 @@ $(document).ready(function(){
         possibleColors[Math.floor(Math.random()*6)],
         possibleColors[Math.floor(Math.random()*6)]
     ];
-    
-    console.log(code);
+
     for(let i = 0; i < 44; i++){
         let cell = "<div class=\"boardCell\" id=board"+i+"></div>"
         $(".board").append(cell);
@@ -62,9 +61,14 @@ $(document).ready(function(){
         }
     });
     $(".submit").click(function(){
-        updatePegs();
-        checkWin();
-        changeCurrentRow();
+        if(document.getElementById("board"+((currentRow*4)-1)).style.backgroundColor!=="white" ||
+        document.getElementById("board"+((currentRow*4)-2)).style.backgroundColor!=="white" ||
+        document.getElementById("board"+((currentRow*4)-3)).style.backgroundColor!=="white" ||
+        document.getElementById("board"+((currentRow*4)-4)).style.backgroundColor!=="white" ){
+            updatePegs();
+            checkWin();
+            changeCurrentRow();
+        }
     });
     function changeCurrentRow(){
         currentRow -= 1;
